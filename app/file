@@ -1,0 +1,107 @@
+Start():
+        startX = rnd.nextInt((1500 - 500) + 1) + 500;
+        startY = 850;
+        maxY = 850 - (600 + rnd.nextInt(150));
+        midX = startX - halfLength;
+        halfLength = rnd.nextInt(500);
+        x = startX;
+        y = startY;
+      -------------------------------------------------------------
+            if (n == 0)
+            {
+                startX = 1500;
+                startY = 800;
+                dx = 10;
+                dy = 80;
+                //dy = rnd.nextInt((750 - 50) + 1) + 50;
+                maxY = 200;
+                x = startX;
+                y = startY;
+            }
+            if (n == 1)
+            {
+                startX = rnd.nextInt((1500 - 500) + 1) + 500;
+                startY = 900;
+                dx = 10;
+                dy = rnd.nextInt((750 - 50) + 1) + 50;
+                maxY = rnd.nextInt((300 - 100) + 1) + 100;
+                x = startX;
+                y = startY;
+            }
+            if (n == 3)
+            {
+                startX = rnd.nextInt((1500 - 500) + 1) + 500;
+                startY = 900;
+                dx = 10;
+                dy = rnd.nextInt((750 - 50) + 1) + 50;
+                maxY = rnd.nextInt((300 - 100) + 1) + 100;
+                x = startX;
+                y = startY;
+            }
+            if (n == 4)
+            {
+                startX = rnd.nextInt((1500 - 500) + 1) + 500;
+                startY = 900;
+                dx = 10;
+                dy = rnd.nextInt((750 - 50) + 1) + 50;
+                maxY = rnd.nextInt((300 - 100) + 1) + 100;
+                x = startX;
+                y = startY;
+            }
+------------------------------------------------------------------------------------------
+DrawSurfaceView():
+        if (n == 0)
+            bitmap1 = BitmapFactory.decodeResource(getResources(), wm3);
+        if (n == 1)
+            bitmap1 = BitmapFactory.decodeResource(getResources(), orange3);
+        if (n == 2)
+            bitmap1 = BitmapFactory.decodeResource(getResources(), banana2);
+        if (n == 3)
+            bitmap1 = BitmapFactory.decodeResource(getResources(), apple3);
+      -------------------------------------------------------------
+      bitmap1 = BitmapFactory.decodeResource(getResources(), wm3);
+      bitmap2 = BitmapFactory.decodeResource(getResources(), orange3);
+      bitmap3 = BitmapFactory.decodeResource(getResources(), banana2);
+      bitmap4 = BitmapFactory.decodeResource(getResources(), apple3);
+      bitmaps = new Bitmap[]{bitmap1, bitmap2, bitmap3, bitmap4};
+------------------------------------------------------------------------------------------
+public void automaticMove()
+    {
+        /*
+        if (startX > 1000)
+            x = x - 30;
+        if (startX < 1000)
+            x = x + 30;
+        if (startX == 1000)
+            x = startX;
+        y = (maxY)/((halfLength)*(halfLength)) * ((x-midX)*(x-midX)) + (maxY);
+
+        if (y > 900)
+            stopAutomaticMove();
+         */
+        /*
+        if (startX > 1000)
+            x = x - dx;
+        if (startX < 1000)
+            x = x + dx;
+        if (startX == 1000)
+            x = startX;
+         */
+        x = x - dx;
+        dx = dx + 10;
+
+        if (start == true)
+        {
+            if (y > maxY)
+                y = y - dy;
+            if (y <= maxY){
+                start = false;
+            }
+        } else {
+            y = y + dy;
+        }
+
+        if (y >= startY && start == false)
+            stopAutomaticMove();
+    }
+------------------------------------------------------------------------------------------

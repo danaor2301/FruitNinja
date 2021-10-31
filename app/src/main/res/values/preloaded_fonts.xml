@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/aclonica</item>
+        <item>@font/ewert</item>
+        <item>@font/freckle_face</item>
+        <item>@font/luckiest_guy</item>
+        <item>@font/righteous</item>
+        <item>@font/spicy_rice</item>
+        <item>@font/syncopate_bold</item>
+        <item>@font/uncial_antiqua</item>
+    </array>
+</resources>
