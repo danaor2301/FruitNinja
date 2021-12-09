@@ -175,8 +175,6 @@ public class DrawSurfaceView extends SurfaceView implements Runnable {
                                 //c.drawBitmap(bitmapNode.getLast(bitmapNode).GetValue(),
                                         //fruit.getLast(fruit).GetValue().getX(),
                                         //fruit.getLast(fruit).GetValue().getY(),null);
-                                //fruit = firstFruit;
-                                //automaticMove();
                             }
                             fruit = firstFruit;
                             bitmapNode = firstBitmap;
