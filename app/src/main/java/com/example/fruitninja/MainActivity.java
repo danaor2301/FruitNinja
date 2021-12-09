@@ -29,12 +29,13 @@ public class MainActivity extends AppCompatActivity {
     Thread thread;
     FrameLayout frame;
     TextView timer, ready, set, go;
+    static TextView score;
     int count = 0;
-    static int n = 5, j = -1, halfCount = -1;
-    static boolean start = false, stop = false;
+    static int n = 5, j = -1, halfCount = -1, score2 = 0;
+    static boolean start = false, stop = false, sliced = false;
     Random rnd = new Random();
-    Bitmap [] bitmaps = new Bitmap[5];
-    Fruit [] fruit = new Fruit[5];
+    Node<Bitmap> bitmapNode, firstBitmap;
+    Node<Fruit> fruit, firstFruit, fruit2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,15 +51,10 @@ public class MainActivity extends AppCompatActivity {
         thread = new Thread(ds);
         thread.start();
         timer = findViewById(R.id.timer);
+        score = findViewById(R.id.score);
         ready = findViewById(R.id.ready);
         set = findViewById(R.id.set);
         go = findViewById(R.id.go);
-
-        for (int i=0; i<bitmaps.length; i++)
-        {
-            bitmaps[i] = DrawSurfaceView.bitmaps[i];
-            fruit[i] = DrawSurfaceView.fruit[i];
-        }
 
         Thread t = new Thread()
         {
@@ -105,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
                                     go.setText("");
                                     timer.setText("time: " + String.valueOf(count-3) + " s'");
                                     start = true;
+                                    score.setText("score: "+score2);
                                 }
                             }
                         });
@@ -122,18 +119,37 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean onTouchEvent(MotionEvent event)
     {
-        for (int i=0; i<bitmaps.length; i++)
+        firstFruit = DrawSurfaceView.firstFruit;
+        fruit = DrawSurfaceView.firstFruit;
+        bitmapNode = DrawSurfaceView.firstBitmap;
+        sliced = false;
+
+        for (int i=0; i<firstFruit.getLength(firstFruit); i++)
         {
-            if (event.getX() <= (fruit[i].getX()+bitmaps[i].getWidth()) && event.getX() >= fruit[i].getX())
+            if (event.getX() < (fruit.GetValue().getX()+bitmapNode.GetValue().getWidth()) &&
+                    event.getX() > fruit.GetValue().getX())
             {
-                j = i;
-                stop = true;
-                fruit[i].sliced = true;
-                halfCount++;
+                if (event.getY() > fruit.GetValue().getY() &&
+                        (event.getY()) < fruit.GetValue().getY()+bitmapNode.GetValue().getHeight())
+                {
+                    //Toast.makeText(this, (fruit.GetValue().getY()+bitmapNode.GetValue().getHeight())+", "+
+                            //(event.getY())+", "+ (fruit.GetValue().getY()), Toast.LENGTH_SHORT).show();
+                    stop = true;
+                    DrawSurfaceView.firstFruit.getNode(i, DrawSurfaceView.firstFruit).GetValue().sliced = true;
+                    halfCount++;
+                    DrawSurfaceView.firstFruit.getNode(i, DrawSurfaceView.firstFruit).GetValue().score = 1;
+                    score2 = DrawSurfaceView.firstFruit.whatIsTheScore(DrawSurfaceView.firstFruit);
+                    //if (fruit[i].isSliced() == 1)
+                    //score2++;
+                    score.setText("score: " + score2);
+                }
             }
+            fruit = fruit.GetNext();
+            bitmapNode = bitmapNode.GetNext();
         }
         return false;
     }
+
 
 }
 

@@ -12,34 +12,8 @@ public class Fruit {
 
     private float startX, x, y, maxY, endX, midX, a, p, q, length;
     boolean leftToRight, falling = false, sliced = false;
+    int score = 0;
     Bitmap bitmap;
-
-    /*
-    public Fruit(float startX, float x, float y, float maxY, float endX, float midX, float a, float p, float q, float ength) {
-        Random random=new Random();
-        startX= random.nextInt((1500 - 500) + 1) + 500;
-        length = random.nextInt(1000);
-        endX = startX + length;
-        switch (random.nextInt(2)){
-            case 0:
-                leftToRight=true;
-                x=startX;
-                break;
-            case 1:
-                leftToRight=false;
-                x=endX;
-                break;
-        }
-        y=900;
-        midX=(startX+endX)/2;
-        maxY= random.nextInt((300 - 100) + 1) + 100;
-        q=-startX-endX;
-        p=startX*endX;
-        a=(900-maxY)/((midX*midX)+(q*midX)+(p));
-        falling=false;
-    }
-     */
-
 
     public Fruit(float startX, float endX, float x, float y, float midX, float maxY, float a, float p, float q, float length, boolean leftToRight) {
         this.startX = startX;
@@ -150,4 +124,17 @@ public class Fruit {
     public void setLeftToRight(boolean leftToRight) {
         this.leftToRight = leftToRight;
     }
+
+    public boolean getSliced()
+    {
+        return this.sliced;
+    }
+    public int isSliced()
+    {
+        if (this.sliced == true)
+            this.score = 1;
+        return this.score;
+    }
+
+
 }

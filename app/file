@@ -1,3 +1,80 @@
+Node class:
+   package com.example.fruitninja;
+
+   public class NodeClass
+   {
+       private Object data;
+       private NodeClass next;
+
+       public NodeClass(Object data)
+       {
+           this.data = data;
+           next = null;
+       }
+
+       public Object getData(){
+           return this.data;
+       }
+
+       public void setData(Object data){
+           this.data = data;
+       }
+
+       public NodeClass getNext(){
+           return this.next;
+       }
+
+       public void setNext(NodeClass next){
+           this.next = next;
+       }
+
+   }
+
+---------------------------------------------------------------------------
+LinkedList Class:
+    package com.example.fruitninja;
+
+    import android.graphics.Bitmap;
+
+    import org.w3c.dom.Node;
+
+    public class LinkedList
+    {
+        Node head;
+
+        static class Node
+        {
+            Bitmap bitmap;
+            Node next;
+
+            Node(Bitmap d)
+            {
+                bitmap = d;
+                next = null;
+            }
+
+            public static LinkedList insert(LinkedList list, Bitmap bitmap)
+            {
+                Node new_node = new Node(bitmap);
+                new_node.next = null;
+                if (list.head == null){
+                    list.head = new_node;
+                }
+                else {
+                    Node last = list.head;
+                    while (last.next != null)
+                    {
+                        last = last.next;
+                    }
+                    last.next = new_node;
+                }
+                return list;
+            }
+
+        }
+    }
+
+------------------------------------------------------------------------------------------
 Start():
         startX = rnd.nextInt((1500 - 500) + 1) + 500;
         startY = 850;
