@@ -129,8 +129,8 @@ public class MainActivity extends AppCompatActivity {
             if (event.getX() < (fruit.GetValue().getX()+bitmapNode.GetValue().getWidth()) &&
                     event.getX() > fruit.GetValue().getX())
             {
-                if (event.getY() > fruit.GetValue().getY() &&
-                        (event.getY()) < fruit.GetValue().getY()+bitmapNode.GetValue().getHeight())
+                if (event.getY() > fruit.GetValue().getY()+bitmapNode.GetValue().getHeight() &&
+                        (event.getY()) < fruit.GetValue().getY()+(bitmapNode.GetValue().getHeight()*2))
                 {
                     //Toast.makeText(this, (fruit.GetValue().getY()+bitmapNode.GetValue().getHeight())+", "+
                             //(event.getY())+", "+ (fruit.GetValue().getY()), Toast.LENGTH_SHORT).show();

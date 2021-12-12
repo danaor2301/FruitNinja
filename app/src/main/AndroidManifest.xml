@@ -9,10 +9,12 @@
         android:roundIcon="@drawable/fnlogo2"
         android:supportsRtl="true"
         android:theme="@style/Theme.FruitNinja">
+        <activity android:name=".OpeningActivity"></activity>
+
         <receiver
             android:name=".MyReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
 
         <activity android:name=".MainActivity">
             <intent-filter>

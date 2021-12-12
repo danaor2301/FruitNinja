@@ -32,11 +32,11 @@ public class DrawSurfaceView extends SurfaceView implements Runnable {
     Bitmap [] halfBitmapArray = new Bitmap[bitmapsLength];
     Bitmap halfBitmap, halfBitmap2;
     Random rnd = new Random();
-    int count = 0;
+    int count = 0, count2 = 4000;
     float startX, x, y, maxY, endX, midX, a, p, q, length;
     boolean leftToRight, falling;
     int i = 0;
-    int n, rndnum = rnd.nextInt((2000-1000)+1)+1000, time = 0;
+    int n, rndnum = rnd.nextInt((2300-1000)+1)+1000, time = 0;
     TextView TvScore = MainActivity.score;
     static Node<Bitmap> bitmapNode, firstBitmap;
     static Node<Fruit> fruit, firstFruit, fruit2;
@@ -168,13 +168,33 @@ public class DrawSurfaceView extends SurfaceView implements Runnable {
 
                         if (count >= 4000)
                         {
-
-                            if (count == (4000 + rndnum))
+                            if (count < 14000)
                             {
-                                createNewBitmaps();
-                                //c.drawBitmap(bitmapNode.getLast(bitmapNode).GetValue(),
-                                        //fruit.getLast(fruit).GetValue().getX(),
-                                        //fruit.getLast(fruit).GetValue().getY(),null);
+                                if (count > count2+rndnum && count < count2+rndnum+20)
+                                {
+                                    fruit = firstFruit;
+                                    bitmapNode = firstBitmap;
+                                    createNewBitmaps();
+                                }
+                                if (count > count2+rndnum+20 && count < count2+rndnum+40)
+                                {
+                                    count2 = count2 + rndnum + 40;
+                                    rndnum = rnd.nextInt((1800-800)+1)+800;
+                                }
+                            }
+                            if (count >= 14000 && count < 24000)
+                            {
+                                if (count > count2+rndnum && count < count2+rndnum+20)
+                                {
+                                    fruit = firstFruit;
+                                    bitmapNode = firstBitmap;
+                                    createNewBitmaps();
+                                }
+                                if (count > count2+rndnum+20 && count < count2+rndnum+40)
+                                {
+                                    count2 = count2 + rndnum + 40;
+                                    rndnum = rnd.nextInt((1500-700)+1)+700;
+                                }
                             }
                             fruit = firstFruit;
                             bitmapNode = firstBitmap;
