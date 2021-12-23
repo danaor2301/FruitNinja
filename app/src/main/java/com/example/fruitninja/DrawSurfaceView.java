@@ -28,7 +28,7 @@ public class DrawSurfaceView extends SurfaceView implements Runnable {
     boolean threadRunning = true;
     boolean isRunning = true;
     static int bitmapsLength = 5, score = 0;
-    String [] fruitString = new String[bitmapsLength];
+    //String [] fruitString = new String[bitmapsLength];
     Bitmap [] halfBitmapArray = new Bitmap[bitmapsLength];
     Bitmap halfBitmap, halfBitmap2;
     Random rnd = new Random();
@@ -39,14 +39,15 @@ public class DrawSurfaceView extends SurfaceView implements Runnable {
     int n, rndnum = rnd.nextInt((2300-1000)+1)+1000, time = 0;
     TextView TvScore = MainActivity.score;
     static Node<Bitmap> bitmapNode, firstBitmap;
-    static Node<Fruit> fruit, firstFruit, fruit2;
+    static Node<Fruit> fruit, firstFruit, fruit2, firstFruit2;
+    Node<String> fruitString, firstFruitString;
     boolean lose = false;
 
     public void start()
     {
         Random random=new Random();
-        startX= random.nextInt((1500 - 500) + 1) + 500;
-        length = random.nextInt(1000);
+        startX= random.nextInt((1500 - 300) + 1) + 300;
+        length = random.nextInt(1200);
         endX = startX + length;
         switch (random.nextInt(2)){
             case 0:
@@ -67,10 +68,36 @@ public class DrawSurfaceView extends SurfaceView implements Runnable {
         falling=false;
     }
 
+    public void start2(float x2, float y2)
+    {
+        Random random=new Random();
+        startX = x2;
+        length = random.nextInt(1200);
+        endX = startX + length;
+        switch (random.nextInt(2)){
+            case 0:
+                leftToRight=true;
+                x=startX;
+                break;
+            case 1:
+                leftToRight=false;
+                x=endX;
+                break;
+        }
+        midX=x2;
+        maxY= y2;
+        q=-startX-endX;
+        p=startX*endX;
+        a=(900-maxY)/((midX*midX)+(q*midX)+(p));
+        falling=true;
+    }
+
     public void createNewBitmaps()
     {
         fruit = fruit.getLast(fruit);
         bitmapNode = bitmapNode.getLast(bitmapNode);
+        fruitString = fruitString.getLast(fruitString);
+        fruit2 = fruit2.getLast(fruit2);
 
         start();
         n = rnd.nextInt(4);
@@ -78,9 +105,17 @@ public class DrawSurfaceView extends SurfaceView implements Runnable {
         bitmapNode = bitmapNode.GetNext();
         fruit.SetNext(new Node(new Fruit(startX, endX, x, y, midX, maxY, a, p, q, length, leftToRight)));
         fruit = fruit.GetNext();
+        fruitString.SetNext(new Node(returnFruit(n)));
+        fruitString = fruitString.GetNext();
         i++;
-        //bitmapNode = firstBitmap;
-        //fruit = firstFruit;
+        fruit2.SetNext(new Node(new Fruit(startX, endX, x, y, midX, maxY, a, p, q, length, leftToRight)));
+        fruit2 = fruit2.GetNext();
+
+        //start2(fruit.GetValue().getX(), fruit.GetValue().getY());
+        start();
+        fruit2.SetNext(new Node(new Fruit(fruit.GetValue().getX(), endX, x, y,
+                fruit.GetValue().getX(), fruit.GetValue().getY(), a, p, q, length, leftToRight)));
+        fruit2 = fruit2.GetNext();
     }
 
     public DrawSurfaceView(Context context)
@@ -93,47 +128,56 @@ public class DrawSurfaceView extends SurfaceView implements Runnable {
 
         start();
         n = rnd.nextInt(4);
-        bitmapNode = new Node(returnBitmap(n/*, 0*/));
+        bitmapNode = new Node(returnBitmap(n));
         firstBitmap = bitmapNode;
         fruit = new Node(new Fruit(startX, endX, x, y, midX, maxY, a, p, q, length, leftToRight));
         firstFruit = fruit;
-        /*
-        if (rndnum > 1)
-        {
-            for (int i=1; i<rndnum; i++)
-            {
-                start();
-                n = rnd.nextInt(4);
-                bitmapNode.SetNext(new Node(returnBitmap(n, i)));
-                bitmapNode = bitmapNode.GetNext();
-                fruit.SetNext(new Node(new Fruit(startX, endX, x, y, midX, maxY, a, p, q, length, leftToRight)));
-                fruit = fruit.GetNext();
-            }
-        }*/
+        fruitString = new Node(returnFruit(n));
+        firstFruitString = fruitString;
+        fruit2 = new Node(new Fruit(startX, endX, x, y, midX, maxY, a, p, q, length, leftToRight));
+        firstFruit2 = fruit2;
+
+        start();
+        fruit2 = new Node(new Node(new Fruit(fruit.GetValue().getX(), endX, x, y,
+                fruit.GetValue().getX(), fruit.GetValue().getY(), a, p, q, length, leftToRight)));
+        firstFruit2 = fruit2;
     }
 
     public Bitmap returnBitmap(int n)
     {
         Bitmap bitmap = null;
         if (n == 0) {
-            //fruitString[s] = "watermelon";
             bitmap = BitmapFactory.decodeResource(getResources(), wm3);
         }
         if (n == 1) {
-            //fruitString[s] = "orange";
             bitmap = BitmapFactory.decodeResource(getResources(), orange3);
         }
         if (n == 2) {
-            //fruitString[s] = "banana";
             bitmap = BitmapFactory.decodeResource(getResources(), banana2);
         }
         if (n == 3) {
-            //fruitString[s] = "apple";
             bitmap = BitmapFactory.decodeResource(getResources(), apple3);
         }
         return bitmap;
     }
 
+    public String returnFruit(int n)
+    {
+        String s = null;
+        if (n == 0) {
+            s = "watermelon";
+        }
+        if (n == 1) {
+            s = "orange";
+        }
+        if (n == 2) {
+            s = "banana";
+        }
+        if (n == 3) {
+            s = "apple";
+        }
+        return s;
+    }
 
     @Override
     public void run() {
@@ -151,21 +195,6 @@ public class DrawSurfaceView extends SurfaceView implements Runnable {
                     synchronized (this.getHolder()){
                         c.drawRGB(250,208,147);
 
-                        /*fruit = firstFruit;
-                        bitmapNode = firstBitmap;
-                        for (int i=0; i<firstFruit.getLength(firstFruit); i++)
-                        {
-                            c.drawBitmap(bitmapNode.GetValue(), fruit.GetValue().getX(),
-                                    fruit.GetValue().getY(),null);
-                            bitmapNode = bitmapNode.GetNext();
-                            fruit = fruit.GetNext();
-                        }*/
-                        /*rndnum = rnd.nextInt((3000-1000)+1)+1000;
-                        if (count == (4000 + rndnum))
-                        {
-                            createNewBitmaps();
-                        }*/
-
                         if (count >= 4000)
                         {
                             if (count < 14000)
@@ -174,6 +203,8 @@ public class DrawSurfaceView extends SurfaceView implements Runnable {
                                 {
                                     fruit = firstFruit;
                                     bitmapNode = firstBitmap;
+                                    fruitString = firstFruitString;
+                                    fruit2 = firstFruit2;
                                     createNewBitmaps();
                                 }
                                 if (count > count2+rndnum+20 && count < count2+rndnum+40)
@@ -188,6 +219,8 @@ public class DrawSurfaceView extends SurfaceView implements Runnable {
                                 {
                                     fruit = firstFruit;
                                     bitmapNode = firstBitmap;
+                                    fruitString = firstFruitString;
+                                    fruit2 = firstFruit2;
                                     createNewBitmaps();
                                 }
                                 if (count > count2+rndnum+20 && count < count2+rndnum+40)
@@ -198,15 +231,29 @@ public class DrawSurfaceView extends SurfaceView implements Runnable {
                             }
                             fruit = firstFruit;
                             bitmapNode = firstBitmap;
+                            fruitString = firstFruitString;
+                            fruit2 = firstFruit2;
                             for (int i=0; i<firstFruit.getLength(firstFruit); i++)
                             {
                                 c.drawBitmap(bitmapNode.GetValue(), fruit.GetValue().getX(),
                                         fruit.GetValue().getY(),null);
+
+                                if (fruit.GetValue().sliced == true)
+                                {
+                                    c.drawBitmap(returnHalfBitmap2(fruitString), fruit.GetValue().getX()+100,
+                                            fruit.GetValue().getY()+100,null);
+                                }
+
                                 bitmapNode = bitmapNode.GetNext();
                                 fruit = fruit.GetNext();
+                                fruitString = fruitString.GetNext();
+                                fruit2 = fruit2.GetNext();
                             }
                             fruit = firstFruit;
-                            automaticMove();
+                            bitmapNode = firstBitmap;
+                            fruitString = firstFruitString;
+                            fruit2 = firstFruit2;
+                            automaticMove(c);
                         }
                     }
                     Thread.sleep(interval);
@@ -259,7 +306,7 @@ public class DrawSurfaceView extends SurfaceView implements Runnable {
         t.start();
     }
 
-    public void automaticMove()
+    public void automaticMove(Canvas c)
     {
         for (int h=0; h<firstFruit.getLength(firstFruit); h++)
         {
@@ -281,47 +328,62 @@ public class DrawSurfaceView extends SurfaceView implements Runnable {
             }
             else
             {
-                //bitmapNode.SetValue(returnHalfBitmap1(MainActivity.j));
-                //halfBitmapArray[MainActivity.halfCount] = returnHalfBitmap2(MainActivity.j);
-                //c.drawBitmap(halfBitmapArray[MainActivity.halfCount], fruit[MainActivity.j].getX()+100, fruit[MainActivity.j].getY()-100, null);
-                //fruit.GetValue().setY(fruit.GetValue().getY()+10);
+                fruit.GetValue().setFalling(true);
+                bitmapNode.SetValue(returnHalfBitmap1(fruitString));
+                //c.drawBitmap(returnHalfBitmap2(fruitString),
+                        //fruit.GetValue().getX(), fruit.GetValue().getY(), null);
+
+                fruit.GetValue().setY(900- (fruit.GetValue().getA()*fruit.GetValue().getX()*fruit.GetValue().getX()+
+                        fruit.GetValue().getA()*fruit.GetValue().getQ()*fruit.GetValue().getX() +
+                        fruit.GetValue().getA()*fruit.GetValue().getP()));
+                fruit.GetValue().setX(fruit.GetValue().getX() + 10);
+
+                /*fruit2.GetValue().setY(900- (fruit2.GetValue().getA()*fruit2.GetValue().getX()*fruit2.GetValue().getX()+
+                        fruit2.GetValue().getA()*fruit2.GetValue().getQ()*fruit2.GetValue().getX() +
+                        fruit2.GetValue().getA()*fruit2.GetValue().getP()));
+                fruit2.GetValue().setX(fruit2.GetValue().getX() + 10);*/
             }
             fruit = fruit.GetNext();
+            bitmapNode = bitmapNode.GetNext();
+            fruitString = fruitString.GetNext();
+            fruit2 = fruit2.GetNext();
         }
     }
 
-
-
-    public Bitmap returnHalfBitmap1(int s)
+    public Bitmap returnHalfBitmap1(Node<String> fruitString)
     {
-        if (fruitString[s] == "watermelon") {
-            halfBitmap = BitmapFactory.decodeResource(getResources(), halfwatermelon1);
+        if (fruitString.GetValue() == "watermelon") {
+            return BitmapFactory.decodeResource(getResources(), halfwatermelon1);
         }
-        if (fruitString[s] == "orange") {
-            halfBitmap = BitmapFactory.decodeResource(getResources(), halforange1);
+        if (fruitString.GetValue() == "orange") {
+            return BitmapFactory.decodeResource(getResources(), halforange1);
         }
-        if (fruitString[s] == "banana") {
-            halfBitmap = BitmapFactory.decodeResource(getResources(), halfbanana1);
+        if (fruitString.GetValue() == "banana") {
+            return BitmapFactory.decodeResource(getResources(), halfbanana1);
         }
-        if (fruitString[s] == "apple") {
-            halfBitmap = BitmapFactory.decodeResource(getResources(), halfapple1);
+        if (fruitString.GetValue() == "apple") {
+            return BitmapFactory.decodeResource(getResources(), halfapple1);
         }
 
-        return halfBitmap;
+       return null;
     }
 
-    public Bitmap returnHalfBitmap2(int s)
+    public Bitmap returnHalfBitmap2(Node<String> fruitString)
     {
-        if (fruitString[s] == "watermelon")
-            halfBitmap2 = BitmapFactory.decodeResource(getResources(), halfwatermelon2);
-        if (fruitString[s] == "orange")
-            halfBitmap2 = BitmapFactory.decodeResource(getResources(), halforange2);
-        if (fruitString[s] == "banana")
-            halfBitmap2 = BitmapFactory.decodeResource(getResources(), halfbanana2);
-        if (fruitString[s] == "apple")
-            halfBitmap2 = BitmapFactory.decodeResource(getResources(), halfapple2);
+        if (fruitString.GetValue() == "watermelon") {
+            return BitmapFactory.decodeResource(getResources(), halfwatermelon2);
+        }
+        if (fruitString.GetValue() == "orange") {
+            return BitmapFactory.decodeResource(getResources(), halforange2);
+        }
+        if (fruitString.GetValue() == "banana") {
+            return BitmapFactory.decodeResource(getResources(), halfbanana2);
+        }
+        if (fruitString.GetValue() == "apple") {
+            return BitmapFactory.decodeResource(getResources(), halfapple2);
+        }
 
-        return halfBitmap2;
+        return null;
     }
 
     public void checkScore()
