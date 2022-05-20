@@ -1,0 +1,140 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class custom_dialog extends AppCompatDialogFragment {
+
+    Custom_DialogInterFace dialogInterFace;
+    EditText etNewName;
+    }
+
+class DrawSurfaceView extends SurfaceView implements Runnable {
+    int interval = 1;
+    Context context;
+    SurfaceHolder holder;
+    boolean threadRunning = true;
+    boolean isRunning = true;
+    }
+
+class forgotPassword extends AppCompatActivity implements View.OnClickListener
+{
+    private TextInputEditText etEmail;
+    private Button btnResetPassword;
+    private ImageButton btnReturn;
+    FirebaseAuth auth;
+    }
+
+class Fruit {
+
+    private float startX, x, y, maxY, endX, midX, a, p, q, length;
+    boolean leftToRight, falling = false, sliced = false;
+    int score = 0;
+    boolean hitCounter = false, missCounter = false;
+    }
+
+class gameActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    Toolbar toolbar;
+    Dialog dialogNotification, dialogSettings;
+    private FirebaseUser user;
+    private String userID;
+    private DatabaseReference databaseReference = FirebaseDatabase.getInstance()
+            .getReferenceFromUrl("https://fruitninja-c44d1-default-rtdb.firebaseio.com/");
+}
+
+class gameOverActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener
+{
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    Toolbar toolbar;
+    Dialog dialogNotification;
+    private FirebaseUser user;
+    private String userID;
+    private DatabaseReference databaseReference = FirebaseDatabase.getInstance()
+            .getReferenceFromUrl("https://fruitninja-c44d1-default-rtdb.firebaseio.com/");
+            }
+
+class MainActivity extends AppCompatActivity implements View.OnClickListener{
+
+    DrawSurfaceView ds;
+    Thread thread;
+    FrameLayout frame;
+    ArrayList<Bitmap> bitmapArr;
+    ArrayList<Fruit> fruitArr, fruitArr2;
+    static Animation animRotateCw, animRotateCcw, animFadeOut, animFadeIn, animSlideDown;
+    Dialog dialogPause;
+    }
+
+class MyReceiver extends BroadcastReceiver {}
+
+class Notification_reciever extends BroadcastReceiver
+{
+    private static final String CHANNEL_ID = "SAMPLE_CHANNEL";
+    }
+
+ class OpeningActivity extends AppCompatActivity
+{
+    private FirebaseUser user;
+    private String userID;
+    private DatabaseReference databaseReference = FirebaseDatabase.getInstance()
+            .getReferenceFromUrl("https://fruitninja-c44d1-default-rtdb.firebaseio.com/");
+            }
+
+class profileActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener
+{
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    Toolbar toolbar;
+    Dialog dialogNotification, dialogChangeName;
+    Switch btnSwitch;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser user;
+    private DatabaseReference databaseReference;
+    private String userID;
+    private DatabaseReference databaseReference2 = FirebaseDatabase.getInstance()
+            .getReferenceFromUrl("https://fruitninja-c44d1-default-rtdb.firebaseio.com/");
+            }
+
+ class registerActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener
+{
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference databaseReference = FirebaseDatabase.getInstance()
+            .getReferenceFromUrl("https://fruitninja-c44d1-default-rtdb.firebaseio.com/");
+            }
+
+class signInActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener
+{
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser user;
+    private String userID;
+    private DatabaseReference databaseReference = FirebaseDatabase.getInstance()
+            .getReferenceFromUrl("https://fruitninja-c44d1-default-rtdb.firebaseio.com/");
+            }
+
+class User
+{
+    private String name;
+    private String email;
+    private int bestScore;
+    private int place;
+    private boolean check;
+    private boolean notification;
+    private String date;
+    private boolean musicCheck;
+    private boolean soundCheck;
+    }
+
+class scoresChart extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    Toolbar toolbar;
+    Dialog dialogNotification;
+    private FirebaseUser user;
+    private String userID;
+    private DatabaseReference databaseReference = FirebaseDatabase.getInstance()
+            .getReferenceFromUrl("https://fruitninja-c44d1-default-rtdb.firebaseio.com/");
+            }
+
+@enduml

@@ -7,6 +7,7 @@
         <option name="testRunner" value="PLATFORM" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="$APPLICATION_HOME_DIR$/plugins/android/resources/images/asset_studio/gradle-7.2-bin/gradle-7.2" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E0F2F4"
+    android:fontFamily="@font/aclonica"
+    android:layout_alignParentLeft="true"
+    android:layout_gravity="left"
+    android:fitsSystemWindows="true"
+    tools:context=".gameActivity">
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/nav_view"
+        app:headerLayout="@layout/header"
+        app:menu="@menu/main_menu"
+        android:layout_gravity="left"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#00008577"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/menu_open"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00FBFBFB">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:fontFamily="@font/aclonica"
+            android:text="Fruit Ninja"
+            android:textColor="#0A3042"
+            android:shadowColor="#79CFFA"
+            android:shadowRadius="20"
+            android:shadowDx="10"
+            android:shadowDy="-10"
+            android:textSize="40dp" />
+            />
+
+        <ImageButton
+            android:id="@+id/btnClassic"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginRight="30dp"
+            android:layout_toLeftOf="@+id/btnSettings"
+            android:background="@drawable/btnclassic" />
+
+        <ImageView
+            android:id="@+id/ivApple"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="190dp"
+            android:layout_marginRight="75dp"
+            android:layout_toLeftOf="@+id/btnSettings"
+            android:background="@drawable/apple_full" />
+
+        <ImageButton
+            android:id="@+id/btnSettings"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"
+            android:background="@drawable/btn_settings" />
+
+        <ImageView
+            android:id="@+id/ivOrange"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="195dp"
+            android:background="@drawable/orange_full" />
+
+        <ImageButton
+            android:id="@+id/btnLeaderboard"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="150dp"
+            android:layout_toRightOf="@+id/btnSettings"
+            android:background="@drawable/btnleaderboard" />
+
+        <ImageView
+            android:id="@+id/ivWatermelon"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginLeft="77dp"
+            android:layout_marginTop="196dp"
+            android:layout_toRightOf="@+id/btnSettings"
+            android:background="@drawable/watermelon_full" />
+
+    </RelativeLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:id="@+id/layout_dialog"
+    android:background="#FABF69"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Game Paused!"
+        android:layout_centerHorizontal="true"
+        android:textColor="#7A4900"
+        android:fontFamily="@font/aclonica"
+        android:textSize="15dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="What would you like to do?"
+        android:textColor="#C97A4900"
+        android:textSize="12dp"
+        android:fontFamily="@font/aclonica"
+        android:layout_centerHorizontal="true"
+        />
+
+    <ImageButton
+        android:id="@+id/btn_cancel"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_toLeftOf="@id/btn_restart"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/btn_cancel"
+        />
+
+    <ImageButton
+        android:id="@+id/btn_restart"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/btn_restart"
+        />
+
+    <ImageButton
+        android:id="@+id/btn_continue"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_toRightOf="@id/btn_restart"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/btn_continue"
+        />
+
+</RelativeLayout>

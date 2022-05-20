@@ -1,3 +1,154 @@
+@Override
+    public void run() {
+        while (threadRunning)
+        {
+            if(isRunning)
+            {
+                if(!holder.getSurface().isValid())
+                    continue;
+
+                Canvas c = null;
+                try
+                {
+                    c = this.getHolder().lockCanvas();
+                    synchronized (this.getHolder()){
+                        c.drawRGB(250,208,147);
+
+                        if (count >= 4000)
+                        {
+                            if (count < 14000)
+                            {
+                                /*handler.postDelayed(new Runnable() {
+                                    public void run() {
+                                        if (count > count2 && count < count2+20)
+                                        {
+                                            fruit = firstFruit;
+                                            bitmapNode = firstBitmap;
+                                            fruitString = firstFruitString;
+                                            fruit2 = firstFruit2;
+                                            createNewBitmaps();
+                                        }
+                                        count2 = count2 + delay + 40;
+                                        handler.postDelayed(this, delay);
+                                    }
+                                }, delay);*/
+                                //if (count > count2+rndnum && count < count2+rndnum+20)
+                                //if (count >= count2 + time)
+                                //{
+                                    if (count > count2+time && count < count2+time+20)
+                                    {
+                                        //rndnum = rnd.nextInt((3 - 2) + 1) + 2;
+                                        fruit = firstFruit;
+                                        bitmapNode = firstBitmap;
+                                        fruitString = firstFruitString;
+                                        fruit2 = firstFruit2;
+                                        createNewBitmaps();
+                                    }
+                                //}
+                                count2 = count2 + time + 20;
+                                if (count > count2+time+20 && count < count2+time+40)
+                                {
+                                    count2 = count2 + 40;
+                                    rndnum = rnd.nextInt((1800-800)+1)+800;
+                                }
+                            }
+                            time = 1700;
+                            count2 = 14000;
+                            if (count >= 14000 && count < 24000)
+                            {
+                                if (count > count2+time && count < count2+time+20)
+                                {
+                                    rndnum = rnd.nextInt((3 - 2) + 1) + 2;
+                                    for (int i=0; i<rndnum; i++)
+                                    {
+                                        fruit = firstFruit;
+                                        bitmapNode = firstBitmap;
+                                        fruitString = firstFruitString;
+                                        fruit2 = firstFruit2;
+                                        createNewBitmaps();
+                                    }
+                                }
+                                count2 = count2 + time + 20;
+                            }
+                            time = 1500;
+                            count2 = 24000;
+                            if (count >= 24000 && count < 50000)
+                            {
+                                if (count > count2+time && count < count2+time+20)
+                                {
+                                    rndnum = rnd.nextInt((4 - 3) + 1) + 3;
+                                    for (int i=0; i<rndnum; i++)
+                                    {
+                                        fruit = firstFruit;
+                                        bitmapNode = firstBitmap;
+                                        fruitString = firstFruitString;
+                                        fruit2 = firstFruit2;
+                                        createNewBitmaps();
+                                    }
+                                }
+                                count2 = count2 + time + 20;
+                            }
+                            /*if (count >= 14000)
+                            {
+                                if (count > count2+rndnum && count < count2+rndnum+20)
+                                {
+                                    fruit = firstFruit;
+                                    bitmapNode = firstBitmap;
+                                    fruitString = firstFruitString;
+                                    fruit2 = firstFruit2;
+                                    createNewBitmaps();
+                                }
+                                if (count > count2+rndnum+20 && count < count2+rndnum+40)
+                                {
+                                    count2 = count2 + rndnum + 40;
+                                    rndnum = rnd.nextInt((1500-700)+1)+700;
+                                }
+                            }*/
+                            fruit = firstFruit;
+                            bitmapNode = firstBitmap;
+                            fruitString = firstFruitString;
+                            fruit2 = firstFruit2;
+                            for (int i=0; i<firstFruit.getLength(firstFruit); i++)
+                            {
+                                c.drawBitmap(bitmapNode.GetValue(), fruit.GetValue().getX(),
+                                        fruit.GetValue().getY(),null);
+
+                                if (fruit.GetValue().sliced == true)
+                                {
+                                    c.drawBitmap(returnHalfBitmap2(fruitString), fruit2.GetValue().getX(),
+                                            fruit2.GetValue().getY(),null);
+                                }
+
+                                bitmapNode = bitmapNode.GetNext();
+                                fruit = fruit.GetNext();
+                                fruitString = fruitString.GetNext();
+                                fruit2 = fruit2.GetNext();
+                            }
+                            fruit = firstFruit;
+                            bitmapNode = firstBitmap;
+                            fruitString = firstFruitString;
+                            fruit2 = firstFruit2;
+                            automaticMove(c);
+                        }
+                    }
+                    Thread.sleep(interval);
+                }
+                catch (Exception e)
+                {
+
+                }
+                finally {
+                    if(c!=null)
+                    {
+                        this.getHolder().unlockCanvasAndPost(c);
+                    }
+                }
+            }
+        }
+    }
+
+
+-------------------------------------------------------------------
 Node class:
    package com.example.fruitninja;
 

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "737050385807",
+    "project_id": "fruitninja-c44d1",
+    "storage_bucket": "fruitninja-c44d1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:737050385807:android:0800ca5be6cf8ae0797ffa",
+        "android_client_info": {
+          "package_name": "com.example.fruitninja"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "737050385807-sutbq9b9qom5mopp0g8e12bak99m2lrv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPMfn4PhrAdmr23iPe9zVPhuNWwrkAqWc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "737050385807-sutbq9b9qom5mopp0g8e12bak99m2lrv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

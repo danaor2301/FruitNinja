@@ -2,31 +2,56 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.fruitninja">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+
     <application
         android:allowBackup="true"
-        android:icon="@drawable/fnlogo2"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/fnlogo2"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FruitNinja">
-        <activity android:name=".OpeningActivity"></activity>
-
-        <receiver
-            android:name=".MyReceiver"
-            android:enabled="true"
-            android:exported="true" />
-
-        <activity android:name=".MainActivity">
+        android:theme="@style/Theme.FruitNinja"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".gameActivity"
+            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".forgotPassword"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".scoresChart"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".profileActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".registerActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".signInActivity"
+            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".gameOverActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".OpeningActivity"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="landscape" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <receiver android:name=".Notification_reciever" />
     </application>
 
 </manifest>

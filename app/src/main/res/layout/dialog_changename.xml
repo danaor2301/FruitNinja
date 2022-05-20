@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:id="@+id/layout_dialog"
+    android:background="#F7E1FA"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose New Username"
+        android:layout_centerHorizontal="true"
+        android:textColor="#42044C"
+        android:fontFamily="@font/aclonica"
+        android:textSize="15dp"
+        />
+
+    <EditText
+        android:id="@+id/etNewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Enter new username"
+        android:textColor="#42044C"
+        android:textSize="12dp"
+        android:fontFamily="@font/aclonica"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp"
+        />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="Save"
+        android:textSize="12dp"
+        android:fontFamily="@font/aclonica"
+        android:backgroundTint="#42044C"
+        android:textColor="#ffffff"
+        android:shadowRadius="20"
+        android:shadowColor="#F7E1FA"
+        android:layout_marginTop="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="Cancel"
+        android:textSize="12dp"
+        android:fontFamily="@font/aclonica"
+        android:backgroundTint="#42044C"
+        android:textColor="#ffffff"
+        android:shadowRadius="20"
+        android:shadowColor="#F7E1FA"
+        android:layout_marginTop="60dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        />
+
+</RelativeLayout>

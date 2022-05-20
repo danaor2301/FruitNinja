@@ -13,7 +13,7 @@ public class Fruit {
     private float startX, x, y, maxY, endX, midX, a, p, q, length;
     boolean leftToRight, falling = false, sliced = false;
     int score = 0;
-    Bitmap bitmap;
+    boolean hitCounter = false, missCounter = false;
 
     public Fruit(float startX, float endX, float x, float y, float midX, float maxY, float a, float p, float q, float length, boolean leftToRight) {
         this.startX = startX;

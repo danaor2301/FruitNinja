@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/openingbg"
+    android:background="@drawable/openbg2"
     tools:context=".OpeningActivity">
 
 
@@ -13,11 +13,46 @@
         android:layout_height="wrap_content"
         android:text="Fruit Ninja"
         android:fontFamily="@font/aclonica"
-        android:layout_centerInParent="true"
-        android:textColor="#6C0606"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp"
+        android:textColor="#0A3042"
         android:textSize="50dp"
         />
 
+    <ImageView
+        android:id="@+id/ivApple"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/apple_full"/>
 
+    <ImageView
+        android:id="@+id/ivNinja"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="180dp"
+        android:background="@drawable/ninjaa"/>
+
+    <ImageView
+        android:id="@+id/ivWatermelon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="280dp"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/watermelon_full"/>
+
+    <ImageView
+        android:id="@+id/ivNinja2"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="120dp"
+        android:layout_marginTop="180dp"
+        android:background="@drawable/ninjaa_right"/>
 
 </RelativeLayout>

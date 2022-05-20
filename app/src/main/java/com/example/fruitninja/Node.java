@@ -94,6 +94,25 @@ public class Node<T>
         return count;
     }
 
+    public int howManyLosses(Node<Fruit> fruitNode, Node<String> fruitString)
+    {
+        Node<Fruit> f = fruitNode;
+        Node<String> fS = fruitString;
+        int count = 0;
+
+        for (int i=0; i<fruitNode.getLength(fruitNode); i++)
+        {
+            if (fS.GetValue() != "bomb")
+            {
+                if (f.GetValue().getY() >= 950 && f.GetValue().sliced == false)
+                    count++;
+            }
+            f = f.GetNext();
+            fS = fS.GetNext();
+        }
+        return count;
+    }
+
     public void insert(Node<T> node, Node<T> n)
     {
         Node<T> p = node;
@@ -103,6 +122,26 @@ public class Node<T>
 
         node.SetNext(new Node(n));
         node = node.GetNext();
+    }
+
+    public void delete(Node<T> node, Node<T> n)
+    {
+        Node temp = node, prev = null;
+
+        if (temp != null && temp.GetValue() == n.GetValue()) {
+            node = temp.GetNext(); // Changed head
+            return;
+        }
+
+        while (temp != null && temp.GetValue() != n.GetValue()) {
+            prev = temp;
+            temp = temp.GetNext();
+        }
+
+        if (temp == null)
+            return;
+
+        prev.SetNext(temp.GetNext());
     }
 
 }

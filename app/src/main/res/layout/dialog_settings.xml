@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="250dp"
+    android:layout_height="180dp"
+    android:id="@+id/layout_dialog"
+    android:background="#FBA82E"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:fontFamily="@font/aclonica"
+        android:layout_centerHorizontal="true"
+        android:textSize="15dp"
+        android:textColor="#000000"
+        />
+
+    <TextView
+        android:id="@+id/username_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="username123"
+        android:textColor="#000000"
+        android:textSize="10dp"
+        android:fontFamily="@font/aclonica"
+        android:layout_marginTop="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="15dp"
+        />
+
+    <TextView
+        android:id="@+id/date_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="01/01/2022"
+        android:textColor="#000000"
+        android:textSize="10dp"
+        android:fontFamily="@font/aclonica"
+        android:layout_marginTop="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        />
+
+    <ImageButton
+        android:id="@+id/musicBtn"
+        android:layout_width="27dp"
+        android:layout_height="30dp"
+        android:background="@drawable/music_note_on"
+        android:backgroundTint="#000000"
+        android:layout_marginTop="55dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="45dp"
+        />
+
+    <ImageButton
+        android:id="@+id/soundBtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/volume_up_icon"
+        android:backgroundTint="#000000"
+        android:layout_marginTop="55dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="45dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="background"
+        android:textColor="#000000"
+        android:textSize="8dp"
+        android:fontFamily="@font/aclonica"
+        android:layout_below="@+id/musicBtn"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="33dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sound"
+        android:textColor="#000000"
+        android:textSize="8dp"
+        android:fontFamily="@font/aclonica"
+        android:layout_below="@+id/soundBtn"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="47dp"
+        />
+
+    <Button
+        android:id="@+id/closeBtn"
+        android:layout_width="200dp"
+        android:layout_height="38dp"
+        android:text="close"
+        android:textColor="#000000"
+        android:textSize="15dp"
+        android:fontFamily="@font/aclonica"
+        android:backgroundTint="#F8CB87"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        />
+
+</RelativeLayout>

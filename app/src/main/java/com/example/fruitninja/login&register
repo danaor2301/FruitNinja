@@ -1,0 +1,318 @@
+*** signinActivity.xml:
+<TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#79BEC6"
+        android:text="Fruit Ninja"
+        android:textColor="#02454E"
+        android:fontFamily="@font/aclonica"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Have an account?"
+        android:layout_centerHorizontal="true"
+        android:textSize="30dp"
+        android:textColor="#02454E"
+        android:layout_marginTop="100dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login here!"
+        android:layout_centerHorizontal="true"
+        android:textSize="30dp"
+        android:textColor="#02454E"
+        android:layout_marginTop="150dp"
+        />
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:hint="Enter your email"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:hint="Enter your password"
+            android:layout_centerHorizontal="true"
+            android:inputType="textPassword"
+            />
+
+        <Button
+            android:id="@+id/btnSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#79BEC6"
+            android:textColor="#02454E"
+            android:text="Sign in" />
+
+        <TextView
+            android:id="@+id/tvSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="Do not have an account? Sign up here!"
+            android:textAlignment="center"
+            android:layout_centerHorizontal="true"
+            />
+
+    </LinearLayout>
+
+---------------------------------------
+*** signinActivity.java:
+public class signInActivity extends AppCompatActivity implements View.OnClickListener
+{
+    private Button btnSignIn;
+    private EditText etEmail, etPassword;
+    private TextView tvSignUp;
+
+    private ProgressDialog progressDialog;
+    private FirebaseAuth firebaseAuth;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sign_in);
+        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        progressDialog = new ProgressDialog(this);
+        firebaseAuth = FirebaseAuth.getInstance();
+        if (firebaseAuth.getCurrentUser() != null){
+            finish();
+            startActivity(new Intent(getApplicationContext(), profileActivity.class));
+        }
+
+        btnSignIn = findViewById(R.id.btnSignIn);
+        etEmail = findViewById(R.id.etEmail);
+        etPassword = findViewById(R.id.etPassword);
+        tvSignUp = findViewById(R.id.tvSignUp);
+
+        btnSignIn.setOnClickListener(this);
+        tvSignUp.setOnClickListener(this);
+    }
+
+    private void userLogin()
+    {
+        String email = etEmail.getText().toString();
+        String password = etPassword.getText().toString();
+
+        if (TextUtils.isEmpty(email)){
+            etEmail.setError("email can't be empty");
+            etEmail.requestFocus();
+        } else if (TextUtils.isEmpty(password)){
+            etPassword.setError("password can't be empty");
+            etPassword.requestFocus();
+        } else {
+            progressDialog.setMessage("Loging in...");
+            progressDialog.show();
+
+            firebaseAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
+                            progressDialog.dismiss();
+                            if (task.isSuccessful()){
+                                finish();
+                                startActivity(new Intent(getApplicationContext(), profileActivity.class));
+                            }
+                        }
+                    });
+        }
+    }
+
+    @Override
+    public void onClick(View view)
+    {
+        if (view == btnSignIn)
+        {
+            userLogin();
+        }
+        if (view == tvSignUp)
+        {
+            finish();
+            startActivity(new Intent(this, registerActivity.class));
+        }
+    }
+}
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+*** registerActivity.xml:
+<TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#79BEC6"
+        android:text="Fruit Ninja"
+        android:textColor="#02454E"
+        android:fontFamily="@font/aclonica"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New to this app?"
+        android:layout_centerHorizontal="true"
+        android:textSize="30dp"
+        android:textColor="#02454E"
+        android:layout_marginTop="100dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register here!"
+        android:layout_centerHorizontal="true"
+        android:textSize="30dp"
+        android:textColor="#02454E"
+        android:layout_marginTop="150dp"
+        />
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:hint="Enter your email"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:hint="Enter your password"
+            android:layout_centerHorizontal="true"
+            android:inputType="textPassword"
+            />
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#79BEC6"
+            android:textColor="#02454E"
+            android:text="register" />
+
+        <TextView
+            android:id="@+id/tvSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="Already registered? Sign in here"
+            android:textAlignment="center"
+            android:layout_centerHorizontal="true"
+            />
+
+    </LinearLayout>
+
+---------------------------------------
+*** registerActivity.java:
+public class registerActivity extends AppCompatActivity implements View.OnClickListener
+{
+
+    private Button btnRegister;
+    private EditText etEmail, etPassword;
+    private TextView tvSignIn;
+
+    private ProgressDialog progressDialog;
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference databaseReference;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_register);
+
+        progressDialog = new ProgressDialog(this);
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        if (firebaseAuth.getCurrentUser() != null){
+            finish();
+            startActivity(new Intent(getApplicationContext(), profileActivity.class));
+        }
+
+        btnRegister = findViewById(R.id.btnRegister);
+        etEmail = findViewById(R.id.etEmail);
+        etPassword = findViewById(R.id.etPassword);
+        tvSignIn = findViewById(R.id.tvSignIn);
+
+        btnRegister.setOnClickListener(this);
+        tvSignIn.setOnClickListener(this);
+    }
+
+    private void createUser()
+    {
+        String email = etEmail.getText().toString();
+        String password = etPassword.getText().toString();
+
+        if (TextUtils.isEmpty(email)){
+            etEmail.setError("email can't be empty");
+            etEmail.requestFocus();
+        } else if (TextUtils.isEmpty(password)){
+            etPassword.setError("password can't be empty");
+            etPassword.requestFocus();
+        } else {
+            progressDialog.setMessage("Registering user...");
+            progressDialog.show();
+
+            firebaseAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
+                            if (task.isSuccessful()){
+                                finish();
+                                startActivity(new Intent(getApplicationContext(), profileActivity.class));
+                            } else {
+                                Toast.makeText(registerActivity.this, "error: "+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        }
+    }
+
+    /*private void createUserDb()
+    {
+        User user = new User(etName.getText().toString(), 0);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("user");
+        myRef.setValue(user);
+        Toast.makeText(this, "saved successfully", Toast.LENGTH_LONG).show();
+    }*/
+
+    @Override
+    public void onClick(View view)
+    {
+        if (view == btnRegister)
+        {
+            createUser();
+        }
+        if (view == tvSignIn)
+        {
+            startActivity(new Intent(this, signInActivity.class));
+        }
+    }
+}
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||

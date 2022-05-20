@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E0F2F4"
+    tools:context=".registerActivity">
+
+    <TextView
+        android:id="@+id/tvRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New to this app?  Register here!"
+        android:fontFamily="@font/aclonica"
+        android:textSize="20dp"
+        android:textColor="#0A3042"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        />
+
+    <LinearLayout
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintTextColor="#94000000"
+            app:boxStrokeColor="#94000000"
+            android:background="#E0F2F4"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="#94000000"
+                android:fontFamily="@font/aclonica"
+                app:boxStrokeColor="#94000000"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:background="#E0F2F4"
+                android:hint="       Enter your email" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintTextColor="#94000000"
+            app:boxStrokeColor="#94000000"
+            android:background="#E0F2F4"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="#94000000"
+                android:fontFamily="@font/aclonica"
+                app:boxStrokeColor="#94000000"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:background="#E0F2F4"
+                android:hint="       Enter username" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true"
+            app:hintTextColor="#94000000"
+            app:boxStrokeColor="#94000000"
+            android:background="#E0F2F4"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                android:fontFamily="@font/aclonica"
+                android:hint="Enter password"
+                android:textColor="#0A3042"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:background="#E0F2F4"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/aclonica"
+                    android:text="Remember me"
+                    android:textColor="#0A3042"
+                    android:buttonTint="#0A3042"
+                    android:layout_alignParentLeft="true"
+                    />
+            </RelativeLayout>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#0A3042"
+            android:textColor="#ffffff"
+            android:fontFamily="@font/aclonica"
+            android:text="register" />
+
+        <TextView
+            android:id="@+id/tvSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Already registered? Sign in here"
+            android:textAlignment="center"
+            android:textColor="#0A3042"
+            android:fontFamily="@font/aclonica"
+            android:layout_centerHorizontal="true"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>
