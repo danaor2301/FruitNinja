@@ -106,7 +106,7 @@ public class registerActivity extends AppCompatActivity implements View.OnClickL
                             if (task.isSuccessful()) {
                                 String date = new SimpleDateFormat
                                         ("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-                                User user =  new User(email, username, 0, false, date, true, 0);
+                                User user =  new User(email, username, 0, false, date, 0);
                                 if (checkBox.isChecked()){
                                     user.setCheck(true);
                                 }

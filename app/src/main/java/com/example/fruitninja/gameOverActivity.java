@@ -56,7 +56,6 @@ public class gameOverActivity extends AppCompatActivity implements View.OnClickL
     private FirebaseUser user;
     private String userID;
 
-    private DatabaseReference databaseReference2;
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance()
             .getReferenceFromUrl("https://fruitninja-c44d1-default-rtdb.firebaseio.com/");
 
@@ -79,7 +78,6 @@ public class gameOverActivity extends AppCompatActivity implements View.OnClickL
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolBar);
-        databaseReference2 = FirebaseDatabase.getInstance().getReference("users");
 
         ivNewBest.setVisibility(View.GONE);
         if (OpeningActivity.musicCheck == true)
@@ -139,34 +137,29 @@ public class gameOverActivity extends AppCompatActivity implements View.OnClickL
                 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
 
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        userID = user.getUid();
         btnSwitch = dialogNotification.findViewById(R.id.btnSwitch);
-        databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+        SharedPreferences  sharedPreferences = getSharedPreferences("save", MODE_PRIVATE);
+        btnSwitch.setChecked(sharedPreferences.getBoolean("value", true));
+        btnSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                final boolean notification = snapshot.child(userID).child("notification").getValue(boolean.class);
-                btnSwitch.setChecked(notification);
-                btnSwitch.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (OpeningActivity.soundCheck == true)
-                            OpeningActivity.mp_click.start();
-                        if (btnSwitch.isChecked()){
-                            btnSwitch.setChecked(true);
-                            databaseReference.child("users").child(userID).child("notification").setValue(true);
-                            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                                    AlarmManager.INTERVAL_DAY, pendingIntent);
-                        } else {
-                            btnSwitch.setChecked(false);
-                            databaseReference.child("users").child(userID).child("notification").setValue(false);
-                            alarmManager.cancel(pendingIntent);
-                        }
-                    }
-                });
+            public void onClick(View v) {
+                if (OpeningActivity.soundCheck == true)
+                    OpeningActivity.mp_click.start();
+                if (btnSwitch.isChecked()){
+                    SharedPreferences.Editor editor = getSharedPreferences("save", MODE_PRIVATE).edit();
+                    editor.putBoolean("value", true);
+                    editor.apply();
+                    btnSwitch.setChecked(true);
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                            AlarmManager.INTERVAL_DAY, pendingIntent);
+                } else {
+                    SharedPreferences.Editor editor = getSharedPreferences("save", MODE_PRIVATE).edit();
+                    editor.putBoolean("value", false);
+                    editor.apply();
+                    btnSwitch.setChecked(false);
+                    alarmManager.cancel(pendingIntent);
+                }
             }
-            @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) { }
         });
     }
 

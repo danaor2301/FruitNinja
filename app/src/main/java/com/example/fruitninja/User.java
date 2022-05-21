@@ -7,18 +7,16 @@ public class User
     private int bestScore;
     private boolean check;
     private String date;
-    private boolean notification;
     private int place;
 
     public User(){ }
 
-    public User(String email, String name, int bestScore, boolean check, String date, boolean notification, int place) {
+    public User(String email, String name, int bestScore, boolean check, String date, int place) {
         this.email = email;
         this.name = name;
         this.bestScore = bestScore;
         this.check = check;
         this.date = date;
-        this.notification = notification;
         this.place = place;
     }
 
@@ -60,14 +58,6 @@ public class User
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public boolean isNotification() {
-        return notification;
-    }
-
-    public void setNotification(boolean notification) {
-        this.notification = notification;
     }
 
     public int getPlace() {
