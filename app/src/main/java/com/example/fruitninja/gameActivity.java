@@ -146,6 +146,7 @@ public class gameActivity extends AppCompatActivity implements View.OnClickListe
         AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
 
         btnSwitch = dialogNotification.findViewById(R.id.btnSwitch);
+
         SharedPreferences  sharedPreferences = getSharedPreferences("save", MODE_PRIVATE);
         btnSwitch.setChecked(sharedPreferences.getBoolean("value", true));
         btnSwitch.setOnClickListener(new View.OnClickListener() {
